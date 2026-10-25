@@ -3,7 +3,8 @@
 # Técnicas aplicadas (ver justificativa completa no README.md, seção
 # "Técnicas Aplicadas (Fase 2)"):
 #   1. Role Prompting      -> persona de Product Manager/Business Analyst sênior
-#   2. Few-shot Learning   -> 2 exemplos completos (bug simples e bug complexo)
+#   2. Few-shot Learning   -> 3 exemplos completos (bug simples, bug complexo e bug
+#                             médio com persona "sistema")
 #   3. Chain of Thought    -> raciocínio interno em 7 passos antes da resposta final
 #
 # Também resolve os problemas do v1: remove a duplicação de {bug_report} entre
