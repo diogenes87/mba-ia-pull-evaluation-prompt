@@ -24,7 +24,8 @@ registradas nos metadados `techniques_applied` do próprio YAML:
 
 ### 1. Role Prompting (persona)
 
-O `system_prompt` abre definindo uma persona especialista:
+O `system_prompt` abre definindo uma persona especialista
+(`prompts/bug_to_user_story_v2.yml`, linhas 20-24):
 
 > "Você é um Product Manager / Business Analyst sênior, especialista em Engenharia de
 > Requisitos Ágeis, com mais de 10 anos de experiência transformando relatos de bugs
@@ -37,8 +38,8 @@ modelo numa persona sênior eleva o nível de detalhe, o vocabulário ágil corr
 
 ### 2. Few-shot Learning (obrigatório)
 
-Três exemplos completos de entrada → saída, cobrindo os três padrões mais importantes do
-dataset:
+Três exemplos completos de entrada → saída (`prompts/bug_to_user_story_v2.yml`, linhas
+127-213), cobrindo os três padrões mais importantes do dataset:
 
 - **Exemplo 1** — bug simples, persona humana (cliente favoritando um produto);
 - **Exemplo 2** — bug complexo, múltiplos problemas no mesmo relato (checkout com
@@ -48,16 +49,22 @@ dataset:
   checkout), ensinando o modelo a diferenciar quando a responsabilidade é de
   *enforcement* automático do backend em vez de uma ação do usuário.
 
-**Por quê:** few-shot foi a alavanca que mais moveu as métricas nas iterações (ver
-"Diário de Iteração" abaixo). Sem exemplo 3, o modelo tendia a usar sempre a persona
-humana, mesmo quando a referência do dataset usa "Como o sistema...".
+**Por quê:** few-shot é a técnica obrigatória do desafio, e é a que melhor resolve o
+problema central do v1 — a ausência total de exemplos fazia o modelo "adivinhar" o
+formato de saída, gerando respostas inconsistentes de um bug para outro. Dar 2-3
+exemplos completos (entrada → saída) ancora o formato exato esperado (User Story +
+Critérios de Aceitação no padrão Given-When-Then) de forma muito mais confiável do que
+apenas descrever o formato em texto. Na prática, foi a técnica que mais moveu as
+métricas entre as iterações (ver "Diário de Iteração" abaixo): sem o Exemplo 3, o
+modelo tendia a usar sempre a persona humana, mesmo quando a referência do dataset usa
+"Como o sistema...", o que derrubava Precision e F1-Score.
 
 ### 3. Chain of Thought (CoT)
 
 O `system_prompt` instrui um raciocínio interno em 7 passos antes da resposta final
-(identificar ator → ação → benefício → complexidade → critérios Given-When-Then →
-contexto técnico → revisão), com instrução explícita para **não mostrar o raciocínio**,
-apenas o resultado:
+(`prompts/bug_to_user_story_v2.yml`, linhas 32-69: identificar ator → ação → benefício
+→ complexidade → critérios Given-When-Then → contexto técnico → revisão), com instrução
+explícita para **não mostrar o raciocínio**, apenas o resultado:
 
 > "1. Identifique QUEM é afetado pelo bug: um usuário final... ou o próprio
 > sistema/backend. Use a persona "sistema" quando a correção é uma responsabilidade de
