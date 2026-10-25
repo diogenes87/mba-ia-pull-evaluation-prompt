@@ -176,7 +176,10 @@ do processo:
   as 2 bloqueadas por cota e as 3 iterações reais):
   **https://smith.langchain.com/public/e1344b0f-3757-4e98-8535-8f40110b53a3/d**
 - Prompt `v2` publicado e público no Hub:
-  **https://smith.langchain.com/prompts/bug_to_user_story_v2/410fb5d1?organizationId=89738fd5-37af-4a7d-89d1-8839fcfecbb1**
+  **https://smith.langchain.com/hub/diogenes87/bug_to_user_story_v2**
+  (testado sem login: abre normalmente. A URL antiga deste link, no formato de
+  workspace, redirecionava para a tela de login — foi corrigida para este formato
+  público do Hub, que funciona para qualquer visitante.)
 
 Screenshots (também em [`docs/evidence/`](./docs/evidence)):
 
