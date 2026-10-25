@@ -173,15 +173,15 @@ do processo:
 
 Screenshots (também em [`docs/evidence/`](./docs/evidence)):
 
-**Visão geral do experimento final (15/15 runs, 5 métricas por exemplo):**
+**Visão geral do experimento final (15/15 runs, as 5 métricas por exemplo e latência):**
 
 ![Métricas por exemplo](./docs/evidence/01-experimento-metricas-overview.jpg)
 
-**Mesma tabela, com as 5 colunas de métrica + custo/latência visíveis (médias no
-cabeçalho: clarity 0.92, correctness 0.89, f1 0.89, helpfulness 0.91, precision 0.89 —
-pequena diferença de arredondamento em relação aos 0.90 do terminal, mesmo resultado):**
+**Detalhe de um feedback individual, com o "reasoning" (justificativa) que o LLM-juiz
+gerou para a nota de Clarity — mostra que as notas não são arbitrárias, cada uma tem
+uma explicação registrada no LangSmith:**
 
-![Métricas completas com custo e latência](./docs/evidence/02-experimento-metricas-completas.jpg)
+![Reasoning do avaliador em um feedback](./docs/evidence/02-experimento-feedback-reasoning.jpg)
 
 **Tracing detalhado — exemplo 1 (bug médio, Android/notificações):**
 
